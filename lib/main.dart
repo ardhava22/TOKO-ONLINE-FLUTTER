@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_flutter/views/dashboard_view.dart';
 import 'package:movie_flutter/views/login_view.dart';
-import 'package:movie_flutter/views/movie_view.dart';
+import 'package:movie_flutter/views/store_view.dart';
 import 'package:movie_flutter/views/pesan_view.dart';
 import 'package:movie_flutter/views/register_user_view.dart';
 import 'package:movie_flutter/widgets/bottom_navbar.dart';

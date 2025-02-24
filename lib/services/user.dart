@@ -6,7 +6,7 @@ import 'package:movie_flutter/models/user_login.dart';
 
 class UserService {
   Future registerUser(data) async {
-    var uri = Uri.parse(url.BaseUrl + "/auth/register");
+    var uri = Uri.parse(url.BaseUrl + "/register_pelanggan");
     var register = await http.post(uri, body: data);
 
     if (register.statusCode == 200) {
@@ -34,7 +34,7 @@ class UserService {
   }
 
   Future loginUser(data) async {
-    var uri = Uri.parse(url.BaseUrl + "/auth/login");
+    var uri = Uri.parse(url.BaseUrl + "/login");
     var register = await http.post(uri, body: data);
 
     if (register.statusCode == 200) {
@@ -45,9 +45,12 @@ class UserService {
             token: data["token"],
             message: data["message"],
             id: data["user"]["id"],
-            nama_user: data["user"]["nama_user"],
+            nama_user: data["user"]["name"],
             email: data["user"]["email"],
-            role: data["user"]["role"]);
+            role: data["user"]["role"],
+            addres: data["user"]["addres"],
+            birthday: data["user"]["birthday"]);
+            
         await userLogin.prefs();
         ResponseDataMap response = ResponseDataMap(
             status: true, message: "Sukses login user", data: data);

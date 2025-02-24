@@ -9,6 +9,8 @@ class UserLogin {
   String? nama_user;
   String? email;
   String? role;
+  String? addres;
+  String? birthday;
   UserLogin(
       {this.status,
       this.token,
@@ -16,7 +18,9 @@ class UserLogin {
       this.id,
       this.nama_user,
       this.email,
-      this.role});
+      this.role,
+      this.addres,
+      this.birthday});
 
 
 Future prefs() async {
@@ -25,9 +29,11 @@ Future prefs() async {
     prefs.setString("token", token!);
     prefs.setString("message", message!);
     prefs.setInt("id", id!);
-    prefs.setString("nama_user", nama_user!);
+    prefs.setString("name", nama_user!);
     prefs.setString("email", email!);
     prefs.setString("role", role!);
+    prefs.setString("addres", addres!);
+    prefs.setString("birthday", birthday! as String);
   }
 
   Future getUserLogin() async {
@@ -39,7 +45,10 @@ Future prefs() async {
         id: prefs.getInt("id")!,
         nama_user: prefs.getString("nama_user")!,
         email: prefs.getString("email")!,
-        role: prefs.getString("role")!);
+        role: prefs.getString("role")!,
+        addres: prefs.getString("addres")!,
+        birthday: prefs.getString("birthday")!,);
+
     return userLogin;
   }
 }

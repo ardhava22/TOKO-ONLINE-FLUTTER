@@ -13,11 +13,11 @@ class _MovieViewState extends State<MovieView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Movie'),
+        title: Text('Dapstore'),
         backgroundColor: Color.fromARGB(255, 39, 140, 127),
         foregroundColor: Colors.white,
       ),
-      body: Text('Movie'),
+      body: Text('Dapstore'),
       bottomNavigationBar: BottomNavbar(1),
     );
   }

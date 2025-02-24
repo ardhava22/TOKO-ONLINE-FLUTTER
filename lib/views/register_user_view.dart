@@ -18,6 +18,8 @@ class _RegisterUserViewState extends State<RegisterUserView> {
       "email": email.text,
       "role": role,
       "password": password.text,
+      "address": addres.text,
+      "birthday": birthday.text,
     };
     var result = await UserService().registerUser(data);
     print(result.status);
@@ -29,6 +31,15 @@ class _RegisterUserViewState extends State<RegisterUserView> {
     super.initState();
   }
 
+  final formKey = GlobalKey<FormState>();
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController addres = TextEditingController();
+  TextEditingController birthday = TextEditingController();
+  List roleChoice = ["pelanggan", "kasir"];
+  String? role;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +47,6 @@ class _RegisterUserViewState extends State<RegisterUserView> {
         leading: Icon(Icons.verified_user),
         title: Text(
           "Register User",
-          //  style: TextStyle(
-          //   fontStyle: FontWeight.bold
-          //   ),
         ),
         backgroundColor: Color.fromARGB(255, 39, 140, 127),
         foregroundColor: Color(0xFFF3E5F5),
@@ -135,7 +143,54 @@ class _RegisterUserViewState extends State<RegisterUserView> {
                                 fontFamily: "Inter",
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
-                            prefixIcon: Icon(Icons.email_outlined)),
+                            prefixIcon: Icon(IconlyLight.message)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: TextFormField(
+                        controller: password,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Password Harus diisi';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.grey.shade300),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            hintText: "Password",
+                            hintStyle: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                            suffix: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  showPass = !showPass;
+                                });
+                              },
+                              icon: showPass
+                                  ? Icon(Icons.visibility)
+                                  : Icon(Icons.visibility_off_outlined),
+                            ),
+                            prefixIcon: Icon(IconlyLight.lock)),
                       ),
                     ),
                     Padding(
@@ -182,7 +237,7 @@ class _RegisterUserViewState extends State<RegisterUserView> {
                               fontWeight: FontWeight.w400,
                               fontSize: 15,
                             ),
-                            prefixIcon: Icon(Icons.account_balance_outlined)),
+                            prefixIcon: Icon(IconlyLight.profile)),
                         // icon: Icon(Icons.account_circle_outlined),
                         // hint: Text(
                         //   "Pilih role",
@@ -193,50 +248,79 @@ class _RegisterUserViewState extends State<RegisterUserView> {
                         // ),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    TextFormField(
-                      controller: password,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Password Harus diisi';
-                        } else {
-                          return null;
-                        }
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide(color: Colors.grey.shade300),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide(color: Colors.red),
-                          ),
-                          focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: BorderSide(color: Colors.red),
-                          ),
-                          hintText: "Password",
-                          hintStyle: TextStyle(
-                              fontFamily: "Inter",
-                              fontSize: 15,
-                              fontWeight: FontWeight.w500),
-                          suffix: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                showPass = !showPass;
-                              });
-                            },
-                            icon: showPass
-                                ? Icon(Icons.visibility)
-                                : Icon(Icons.visibility_off_outlined),
-                          ),
-                          prefixIcon: Icon(Icons.lock_outline)),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: TextFormField(
+                        controller: addres,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Alamat Harus diisi';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.grey.shade300),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            hintText: "Alamat",
+                            hintStyle: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                            prefixIcon: Icon(IconlyLight.home)),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      child: TextFormField(
+                        controller: birthday,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Ulang Tahun Harus diisi';
+                          } else {
+                            return null;
+                          }
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.grey.shade300),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.black),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(40),
+                              borderSide: BorderSide(color: Colors.red),
+                            ),
+                            hintText: "Ulang Tahun",
+                            hintStyle: TextStyle(
+                                fontFamily: "Inter",
+                                fontSize: 15,
+                                fontWeight: FontWeight.w500),
+                            prefixIcon: Icon(IconlyLight.activity)),
+                      ),
                     ),
                     SizedBox(
                       height: 15,
@@ -259,6 +343,8 @@ class _RegisterUserViewState extends State<RegisterUserView> {
                                 "email": email.text,
                                 "role": role,
                                 "password": password.text,
+                                "addres": addres.text,
+                                "birthday": birthday.text,
                               };
 
                               var result =
@@ -267,6 +353,8 @@ class _RegisterUserViewState extends State<RegisterUserView> {
                                 name.clear();
                                 email.clear();
                                 password.clear();
+                                addres.clear;
+                                birthday.clear;
                                 setState(() {
                                   role = null;
                                 });
@@ -295,7 +383,9 @@ class _RegisterUserViewState extends State<RegisterUserView> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 15,),
+                    SizedBox(
+                      height: 15,
+                    ),
                     MaterialButton(
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, '/login');
@@ -335,10 +425,3 @@ class _RegisterUserViewState extends State<RegisterUserView> {
     );
   }
 }
-
-final formKey = GlobalKey<FormState>();
-TextEditingController name = TextEditingController();
-TextEditingController email = TextEditingController();
-TextEditingController password = TextEditingController();
-List roleChoice = ["admin", "user"];
-String? role;
