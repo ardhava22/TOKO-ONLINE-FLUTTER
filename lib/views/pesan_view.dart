@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_flutter/widgets/bottom_navbar.dart';
+import 'package:toko_online_flutter/widgets/bottom_navbar.dart';
 
 class PesanView extends StatefulWidget {
   const PesanView({super.key});
@@ -18,7 +18,7 @@ class _PesanViewState extends State<PesanView> {
         foregroundColor: Colors.white,
       ),
       body: Text('Ini adalah tampilan pesan'),
-      bottomNavigationBar: BottomNavbar(1),
+      bottomNavigationBar: BottomNav(2),
     );
   }
 }

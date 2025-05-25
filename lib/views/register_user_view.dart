@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:movie_flutter/services/user.dart';
-import 'package:movie_flutter/widgets/alert.dart';
+import 'package:toko_online_flutter/services/user.dart';
+import 'package:toko_online_flutter/widgets/alert.dart';
 
 class RegisterUserView extends StatefulWidget {
   const RegisterUserView({super.key});
@@ -60,9 +60,18 @@ class _RegisterUserViewState extends State<RegisterUserView> {
           child: Column(
             children: [
               Text(
-                "Register User",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                "Daftar",
+                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, 
+                fontFamily: 'Poppins', ),
               ),
+              SizedBox(height: 16,),
+              Text("Silakan isi untuk membuat  akun pada aplikasi kami",
+              style: TextStyle(
+                color: Color.fromARGB(255, 125, 132, 141),
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w300,
+                fontSize: 16,
+              ),),
               SizedBox(
                 height: 25,
               ),
@@ -84,7 +93,7 @@ class _RegisterUserViewState extends State<RegisterUserView> {
                         keyboardType: TextInputType.name,
                         decoration: InputDecoration(
                             enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(40),
+                              borderRadius: BorderRadius.circular(14),
                               borderSide:
                                   BorderSide(color: Colors.grey.shade300),
                             ),

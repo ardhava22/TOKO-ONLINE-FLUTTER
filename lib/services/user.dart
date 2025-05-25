@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:movie_flutter/models/response_data_map.dart';
-import 'package:movie_flutter/services/url.dart' as url;
+import 'package:toko_online_flutter/models/response_data_map.dart';
+import 'package:toko_online_flutter/services/url.dart' as url;
 import 'package:http/http.dart' as http;
-import 'package:movie_flutter/models/user_login.dart';
+import 'package:toko_online_flutter/models/user_login.dart';
 
 class UserService {
   Future registerUser(data) async {
-    var uri = Uri.parse(url.BaseUrl + "/register_pelanggan");
+    var uri = Uri.parse(url.BaseUrl + "/register");
     var register = await http.post(uri, body: data);
 
     if (register.statusCode == 200) {
@@ -44,12 +44,12 @@ class UserService {
             status: data["status"],
             token: data["token"],
             message: data["message"],
-            id: data["user"]["id"],
-            nama_user: data["user"]["name"],
-            email: data["user"]["email"],
-            role: data["user"]["role"],
-            addres: data["user"]["addres"],
-            birthday: data["user"]["birthday"]);
+            id: data["data"]["id"],
+            name: data["data"]["name"],
+            email: data["data"]["email"],
+            role: data["data"]["role"],
+            addres: data["data"]["addres"],
+            birthday: data["data"]["birthday"]);
             
         await userLogin.prefs();
         ResponseDataMap response = ResponseDataMap(

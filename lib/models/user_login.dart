@@ -1,4 +1,4 @@
-// import 'package:movie_flutter/views/register_user_view.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserLogin {
@@ -6,7 +6,7 @@ class UserLogin {
   String? token;
   String? message;
   int? id;
-  String? nama_user;
+  String? name;
   String? email;
   String? role;
   String? addres;
@@ -16,7 +16,7 @@ class UserLogin {
       this.token,
       this.message,
       this.id,
-      this.nama_user,
+      this.name,
       this.email,
       this.role,
       this.addres,
@@ -26,14 +26,14 @@ class UserLogin {
 Future prefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setBool("status", status!);
-    prefs.setString("token", token!);
+    prefs.setString("token", token ?? "");
     prefs.setString("message", message!);
     prefs.setInt("id", id!);
-    prefs.setString("name", nama_user!);
+    prefs.setString("name", name!);
     prefs.setString("email", email!);
     prefs.setString("role", role!);
     prefs.setString("addres", addres!);
-    prefs.setString("birthday", birthday! as String);
+    prefs.setString("birthday", birthday!);
   }
 
   Future getUserLogin() async {
@@ -43,7 +43,7 @@ Future prefs() async {
         token: prefs.getString("token")!,
         message: prefs.getString("message")!,
         id: prefs.getInt("id")!,
-        nama_user: prefs.getString("nama_user")!,
+        name: prefs.getString("name")!,
         email: prefs.getString("email")!,
         role: prefs.getString("role")!,
         addres: prefs.getString("addres")!,
@@ -52,13 +52,3 @@ Future prefs() async {
     return userLogin;
   }
 }
-
-  // Future getUserLogin() async {
-  //   var user = await UserLogin.getUserLogin();
-  //   if (user.status != false) {
-  //     setState (() {
-  //       name = user.nama_user;
-  //       role = user.role;
-  //     });
-  //   }
-  // }

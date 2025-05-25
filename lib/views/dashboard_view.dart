@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:movie_flutter/models/user_login.dart';
-import 'package:movie_flutter/widgets/bottom_navbar.dart';
+import 'package:toko_online_flutter/models/user_login.dart';
+import 'package:toko_online_flutter/widgets/bottom_navbar.dart';
 
 
 class DashboardView extends StatefulWidget {
@@ -15,13 +15,13 @@ class DashboardView extends StatefulWidget {
 
 class _DashboardViewState extends State<DashboardView> {
   UserLogin userLogin = UserLogin();
-  String? nama;
+  String? name;
   String? role;
   getUserLogin() async {
     var user = await userLogin.getUserLogin();
     if (user.status != false) {
       setState(() {
-        nama = user.nama_user;
+        name = user.name;
         role = user.role;
       });
     }
@@ -51,8 +51,8 @@ class _DashboardViewState extends State<DashboardView> {
               icon: Icon(IconlyLight.logout))
         ],
       ),
-      body: Center(child: Text("Selamat Datang $nama role anda $role")),
-      bottomNavigationBar: BottomNavbar(0),
+      body: Center(child: Text("Selamat Datang $name role anda $role")),
+      bottomNavigationBar: BottomNav(0),
     );
   }
 }

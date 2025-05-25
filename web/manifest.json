@@ -1,6 +1,6 @@
 {
-    "name": "movie_flutter",
-    "short_name": "movie_flutter",
+    "name": "toko_flutter",
+    "short_name": "toko_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

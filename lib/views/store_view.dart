@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:movie_flutter/widgets/bottom_navbar.dart';
+import 'package:toko_online_flutter/widgets/bottom_navbar.dart';
 
-class MovieView extends StatefulWidget {
-  const MovieView({super.key});
+
+class StoreView extends StatefulWidget {
+  const StoreView({super.key});
 
   @override
-  State<MovieView> createState() => _MovieViewState();
+  State<StoreView> createState() => _StoreViewState();
 }
 
-class _MovieViewState extends State<MovieView> {
+class _StoreViewState extends State<StoreView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +19,7 @@ class _MovieViewState extends State<MovieView> {
         foregroundColor: Colors.white,
       ),
       body: Text('Dapstore'),
-      bottomNavigationBar: BottomNavbar(1),
+      bottomNavigationBar: BottomNav(1),
     );
   }
 }
